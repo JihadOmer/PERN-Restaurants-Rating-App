@@ -25,6 +25,12 @@ app.post('/api/v1/createRestaurant',(req, res) => {
 })
 
 
+// update restaurant
+app.put('/api/v1/updateRestaurant/:id',(req, res) => {
+    console.log(req.params)
+    console.log(req.body)
+})
+
 
 
 
