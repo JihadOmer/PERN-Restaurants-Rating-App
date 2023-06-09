@@ -19,6 +19,12 @@ app.get('/api/v1/getReastaurant/:id',(req, res) => {
      console.log(req.params)
 })
 
+// create a restaurant
+app.post('/api/v1/createRestaurant',(req, res) => {
+    console.log(req.body)
+})
+
+
 
 
 
