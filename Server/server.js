@@ -3,6 +3,15 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 
+// middleware
+app.use((
+    req, res, next) => {
+    console.log("Hello from the middleware");
+    next();
+});
+
+
+
 
  // get all restaurants
 app.get("/api/v1/restaurants", (req, res) => {
