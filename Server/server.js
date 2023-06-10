@@ -1,49 +1,37 @@
 require("dotenv").config();
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
 const port = process.env.PORT || 3001;
 
+
 // middleware
-app.use((
-    req, res, next) => {
-    console.log("Hello from the middleware");
-    next();
-});
+app.use(express.json());
 
-
-
-
- // get all restaurants
+// get all restaurants
 app.get("/api/v1/restaurants", (req, res) => {
   res.status(200).json({
-      status: "success",
-    data :{
-    restaurant: ["Sareeg",'KFC']
-    }
+    status: "success",
+    data: {
+      restaurant: ["Sareeg", "KFC"],
+    },
   });
 });
 
 // get individual restaurant
-app.get('/api/v1/getReastaurant/:id',(req, res) => {
-     console.log(req.params)
-})
+app.get("/api/v1/getReastaurant/:id", (req, res) => {
+  console.log(req.params);
+});
 
 // create a restaurant
-app.post('/api/v1/createRestaurant',(req, res) => {
-    console.log(req.body)
-})
-
+app.post("/api/v1/createRestaurant", (req, res) => {
+  console.log(req.body);
+});
 
 // update restaurant
-app.put('/api/v1/updateRestaurant/:id',(req, res) => {
-    console.log(req.params)
-    console.log(req.body)
-})
-
-
-
-
-
-
+app.put("/api/v1/updateRestaurant/:id", (req, res) => {
+  console.log(req.params);
+  console.log(req.body);
+});
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
