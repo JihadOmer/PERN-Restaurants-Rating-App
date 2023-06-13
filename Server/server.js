@@ -17,7 +17,7 @@ app.get("/api/v1/restaurants", (req, res) => {
 });
 
 // get individual restaurant
-app.get("/api/v1/getReastaurant/:id", (req, res) => {
+app.get("/api/v1/restaurant/:id", (req, res) => {
   console.log(req.params);
   res.status(200).json({
     status: "success",
@@ -27,29 +27,27 @@ app.get("/api/v1/getReastaurant/:id", (req, res) => {
   });
 });
 // create a restaurant
-app.post("/api/v1/createRestaurant", (req, res) => {
+app.post("/api/v1/restaurant/:id", (req, res) => {
   res.status(201).json({
     status: "success",
     data: {
-      restaurant: "Sareeg",
+      restaurant: " NEW Sareeg",
     },
   });
 });
 
 // update restaurant
-app.put("/api/v1/updateRestaurant/:id", (req, res) => {
+app.put("/api/v1/restaurant/:id", (req, res) => {
   res.status(201).json({
     status: "success",
     data: {
-      resturant: "Sareeg",
-      location: "Khartoum",
-      rating: "3"
+      resturant: "KFC",
     },
   });
 });
 
 // delete restaurant
-app.delete("/api/v1/deleteRestaurant/:id", (req, res) => {
+app.delete("/api/v1/restaurant/:id", (req, res) => {
   res.status(204).json({
     status: "success",
   });
