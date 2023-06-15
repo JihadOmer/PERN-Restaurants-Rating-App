@@ -9,15 +9,23 @@ app.use(express.json());
 
 // get all restaurants
 app.get("/api/v1/restaurants", async (req, res) => {
+  try {
   const results = await db.query("select * from restaurant");
   console.log(results);
   res.status(200).json({
+    // best practice =>  add number of rows in the response to keep track of the number of responses.
+    results: results.rows.length,
     status: "success",
     data: {
-      restaurant: ["Sareeg", "KFC"],
+      restaurant: results.rows,
     },
   });
-});
+  } catch (err) {
+    console.log(err); 
+  }
+  });
+
+    
 
 // get individual restaurant
 app.get("/api/v1/restaurant/:id", (req, res) => {
