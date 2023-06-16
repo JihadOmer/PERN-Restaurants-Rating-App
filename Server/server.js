@@ -27,7 +27,7 @@ app.get("/api/v1/restaurants", async (req, res) => {
 
 // get one restaurant
 
-app.get("/api/v1/restaurant/:id", async (req, res) => {
+app.get("/api/v1/restaurants/:id", async (req, res) => {
   console.log(req.params.id);
 
   try {
@@ -54,7 +54,7 @@ app.get("/api/v1/restaurant/:id", async (req, res) => {
 });
 
 // create a restaurant //  use params
-app.post("/api/v1/restaurant", async (req, res) => {
+app.post("/api/v1/restaurants", async (req, res) => {
   console.log(req.body);
   try {
     const results = await db.query(
@@ -75,44 +75,39 @@ app.post("/api/v1/restaurant", async (req, res) => {
 });
 
 // update restauran
-app.put("/api/v1/restaurant/:id",async (req, res) => {
-console.log(req.body)
-  try{
-        const results  = await db.query('update restaurant set name = $1, location = $2, price_range = $3 where id = $4 returning *',
-        [req.body.name, req.body.location, req.body.price_range, req.params.id ])
-          console.log(results)
+app.put("/api/v1/restaurants/:id", async (req, res) => {
+  console.log(req.body);
+  try {
+    const results = await db.query(
+      "update restaurant set name = $1, location = $2, price_range = $3 where id = $4 returning *",
+      [req.body.name, req.body.location, req.body.price_range, req.params.id]
+    );
+    console.log(results);
     res.status(201).json({
       status: "success",
       data: {
         resturant: results.rows[0],
       },
     });
-    } catch (err) {
-      console.log(err)
-    }
+  } catch (err) {
+    console.log(err);
+  }
 });
-
- 
 
 // delete restaurant
-app.delete("/api/v1/restaurant/:id", async (req, res) => {
-
- const results = await db.query('DELETE FROM restaurant WHERE id = $1', [req.params.id])
-  console.log(results)
+app.delete("/api/v1/restaurants/:id", async (req, res) => {
+  const results = await db.query("DELETE FROM restaurant WHERE id = $1", [
+    req.params.id,
+  ]);
+  console.log(results);
   try {
-res.status(204).json({
-    status: "success",
-  });
+    res.status(204).json({
+      status: "success",
+    });
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-  
 });
-
-
-
-
-
 
 // ~~~ port setting ~~~~
 const port = process.env.PORT || 3000;
