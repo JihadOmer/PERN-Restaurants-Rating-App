@@ -56,10 +56,18 @@ app.get("/api/v1/restaurant/:id", async (req, res) => {
 });
 
 // create a restaurant
-app.post("/api/v1/restaurant/:id", (req, res) => {
-  res.status(201).json({
-    status: "success",
-    data: {
+app.post("/api/v1/restaurant", async (req, res) => {
+  console.log(req.body);
+  try {
+    const results = await db.query(
+      "insert into restaurant (name, location, price_range) values ($1, $2, $3) returning *",
+      [req.body.name, req.body.location, req.body.price_range]
+    );
+    console.log(results);
+
+    res.status(201).json({
+      status: "success",
+      data: {
       restaurant: " NEW Sareeg",
     },
   });
