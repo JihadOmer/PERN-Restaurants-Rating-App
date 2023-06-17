@@ -1,32 +1,19 @@
 import React from "react";
-import ReastaurantFinder from "../apis/ReastaurantFinder";
-import { useState, useEffect } from "react";
-
-
-
-   
-
-
-
-
- 
-
-
-
+import RestaurantFinder from "../apis/RestaurantFinder";
+import { useEffect } from "react";
 
 const RestaurantList = () => {
-
-    useEffect(async () => {
+  useEffect(() => {
+    const fetchData = async () => {
       try {
-        const response = await ReastaurantFinder.get("/");
+        const response = await RestaurantFinder.get("/");
         console.log(response);
-      } catch (err) {
-        console.log(err);
-      }
-    }, []);
+      } catch (err) {}
+    };
 
+    fetchData();
+  }, []);
 
-    
   return (
     <div className="group-list">
       <table class="table table-hover table-dark">
@@ -83,6 +70,6 @@ const RestaurantList = () => {
       </table>
     </div>
   );
-}
+};
 
 export default RestaurantList;

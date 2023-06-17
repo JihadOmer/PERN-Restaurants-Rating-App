@@ -1,17 +1,20 @@
 require("dotenv").config();
 const express = require("express");
 const db = require("./db");
+const cors = require("cors");
+
 
 const app = express();
 
 // middlewares
+app.use(cors()) // to allow cross origin requests
 app.use(express.json()); // to send body with request
 
 // get all restaurants
 app.get("/api/v1/restaurants", async (req, res) => {
   try {
     const results = await db.query("select * from restaurant");
-    console.log(results);
+
     res.status(200).json({
       // best practice =>  add number of rows in the response to keep track of the number of responses.
       results: results.rows.length,
@@ -28,8 +31,6 @@ app.get("/api/v1/restaurants", async (req, res) => {
 // get one restaurant
 
 app.get("/api/v1/restaurants/:id", async (req, res) => {
-  console.log(req.params.id);
-
   try {
     const restaurantId = parseInt(req.params.id); // Convert to integer
     // Check if the ID is an integer
@@ -55,13 +56,11 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
 
 // create a restaurant //  use params
 app.post("/api/v1/restaurants", async (req, res) => {
-  console.log(req.body);
   try {
     const results = await db.query(
       "INSERT INTO restaurant (name, location, price_range) values ($1, $2, $3) returning *",
       [req.params.name, req.body.name, req.body.location, req.body.price_range]
     );
-    console.log(results);
 
     res.status(201).json({
       status: "success",
@@ -76,13 +75,12 @@ app.post("/api/v1/restaurants", async (req, res) => {
 
 // update restauran
 app.put("/api/v1/restaurants/:id", async (req, res) => {
-  console.log(req.body);
   try {
     const results = await db.query(
       "update restaurant set name = $1, location = $2, price_range = $3 where id = $4 returning *",
       [req.body.name, req.body.location, req.body.price_range, req.params.id]
     );
-    console.log(results);
+
     res.status(201).json({
       status: "success",
       data: {
@@ -99,7 +97,7 @@ app.delete("/api/v1/restaurants/:id", async (req, res) => {
   const results = await db.query("DELETE FROM restaurant WHERE id = $1", [
     req.params.id,
   ]);
-  console.log(results);
+
   try {
     res.status(204).json({
       status: "success",
