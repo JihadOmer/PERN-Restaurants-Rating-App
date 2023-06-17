@@ -1,5 +1,4 @@
-# PERN-Yulp-Clone
-
+# Restaurant Rating App
 ### Welcome to a full stack PERN project !!
 In this project I am building a Website to rate my favorite restaurants.
 
