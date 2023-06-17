@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import Header from "../Components/Header";
+import AddRestaurant from "../Components/AddRestaurant";
 
 function Home() {
   return (
-    <div>Home</div>
-  )
+    <>
+      <Header />
+      <AddRestaurant />
+    </>
+  );
 }
 
-export default Home
+export default Home;
