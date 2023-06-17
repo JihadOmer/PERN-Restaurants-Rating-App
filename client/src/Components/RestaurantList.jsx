@@ -19,39 +19,39 @@ function RestaurantList() {
             <td>Sareeg</td>
             <td>Khartoum</td>
             <td>$$$$</td>
+            <td>Rating</td>
             <td>
               <button className="btn btn-warning">Upate</button>
             </td>
             <td>
               <button className="btn btn-danger">Delete</button>
             </td>
-            <td>3</td>
           </tr>
 
           <tr>
             <td>KFC</td>
             <td>Huddersfield</td>
             <td>$$$</td>
+            <td>Rating</td>
             <td>
               <button className="btn btn-warning">Upate</button>
             </td>
             <td>
               <button className="btn btn-danger">Delete</button>
             </td>
-            <td>3</td>
           </tr>
 
           <tr>
             <td>PizzaHut</td>
             <td>London</td>
             <td>$$</td>
+            <td>Rating</td>
             <td>
               <button className="btn btn-warning">Upate</button>
             </td>
             <td>
               <button className="btn btn-danger">Delete</button>
             </td>
-            <td>3</td>
           </tr>
         </tbody>
       </table>
