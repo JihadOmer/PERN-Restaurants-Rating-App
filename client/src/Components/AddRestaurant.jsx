@@ -1,22 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
+import RestaurantFinder from "../apis/RestaurantFinder"; // to bring data from db
 
 function AddRestaurant() {
+  const [name, SetName] = useState("");
+  const [location, SetLocation] = useState("");
+  const [priceRange, SetPriceRange] = useState("Price Range");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await RestaurantFinder.post("/", {
+        name,
+        location,
+        price_rance: priceRange,
+      });
+      console.log(response);
+    } catch (err) {
+      // Handle error
+    }
+  };
+
   return (
     <div className="mb-4">
       <form action="">
         <div className="form-row">
           <div className="col">
-            <input type="text" className="form-control" placeholder="name" />
+            <input
+              type="text"
+              className="form-control"
+              placeholder="name"
+              value={name}
+              onChange={(e) => SetName(e.target.value)}
+            />
           </div>
           <div className="col">
             <input
               type="text"
               className="form-control"
               placeholder="location"
+              value={location}
+              onChange={(e) => SetLocation(e.target.value)}
             />
           </div>
+
           <div className="col">
-            <select className="custom-select my-1 mr-sm-2">
+            <select
+              className="custom-select my-1 mr-sm-2"
+              value={priceRange}
+              onChange={(e) => SetPriceRange(e.target.value)}
+            >
               <option disabled>Price Range</option>
               <option value="1">$</option>
               <option value="2">$$</option>
@@ -25,7 +57,13 @@ function AddRestaurant() {
               <option value="5">$$$$$</option>
             </select>
           </div>
-          <button className="btn btn-primary">Add</button>
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="btn btn-primary"
+          >
+            Add
+          </button>
         </div>
       </form>
     </div>
