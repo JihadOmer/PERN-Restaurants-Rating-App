@@ -9,13 +9,13 @@ const RestaurantList = (props) => {
     const fetchData = async () => {
       try {
         const response = await RestaurantFinder.get("/");
-        
+
         setRestaurants(response.data.data.restaurant);
       } catch (err) {}
     };
 
     fetchData();
-  }, []);
+  }, [setRestaurants]);
 
   return (
     <div className="group-list">
@@ -31,44 +31,25 @@ const RestaurantList = (props) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Sareeg</td>
-            <td>Khartoum</td>
-            <td>$$$$</td>
-            <td>Rating</td>
-            <td>
-              <button className="btn btn-warning">Upate</button>
-            </td>
-            <td>
-              <button className="btn btn-danger">Delete</button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>KFC</td>
-            <td>Huddersfield</td>
-            <td>$$$</td>
-            <td>Rating</td>
-            <td>
-              <button className="btn btn-warning">Upate</button>
-            </td>
-            <td>
-              <button className="btn btn-danger">Delete</button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>PizzaHut</td>
-            <td>London</td>
-            <td>$$</td>
-            <td>Rating</td>
-            <td>
-              <button className="btn btn-warning">Upate</button>
-            </td>
-            <td>
-              <button className="btn btn-danger">Delete</button>
-            </td>
-          </tr>
+          {restaurants &&
+            restaurants.map((restaurant) => {
+              return (
+                <tr key={restaurant.id}>
+                  <td>{restaurant.name}</td>
+                  <td>{restaurant.location}</td>
+                  <td>
+                    <span>{"$".repeat(restaurant.price_range)}</span>
+                  </td>
+                  <td>No Rating</td>
+                  <td>
+                    <button className="btn btn-warning">Update</button>
+                  </td>
+                  <td>
+                    <button className="btn btn-danger">Delete</button>
+                  </td>
+                </tr>
+              )
+            })}
         </tbody>
       </table>
     </div>
