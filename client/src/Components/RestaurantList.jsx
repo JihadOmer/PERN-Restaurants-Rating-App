@@ -28,8 +28,8 @@ const RestaurantList = (props) => {
 
 
     try {
-      const response = await RestaurantFinder.delete(`/${id}`);
-      console.log(response);
+        await RestaurantFinder.delete(`/${id}`);
+    
       setRestaurants(
         restaurants.filter((restaurant) => {
           return restaurant.id !== id;
