@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import RestaurantFinder from "../apis/RestaurantFinder";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 
 const UpdateRestaurant = (props) => {
   const [name, SetName] = useState("");
   const [location, SetLocation] = useState("");
   const [priceRange, SetPriceRange] = useState("");
-
-  const { id } = useParams();
+  let navigate = useNavigate();
+  const { id } = useParams();   
   const { restaurant } = useContext(RestaurantsContext);
   //  fetch data from api and retreave it on the field
   useEffect(() => {
@@ -29,11 +29,12 @@ const UpdateRestaurant = (props) => {
       location,
       price_range: priceRange,
     });
-    console.log(updatedRestaurant);
-  };
-
+    navigate("/");
+};
+    
   return (
     <div>
+
       <form action="">
         <div className="form-group">
           <label htmlFor="name">Name</label>
