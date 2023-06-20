@@ -8,7 +8,9 @@ const UpdateRestaurant = (props) => {
   const [location, SetLocation] = useState("");
   const [priceRange, SetPriceRange] = useState("");
   let navigate = useNavigate();
-  const { id } = useParams();   
+  // eslint-disable-next-line
+  const { id } = useParams();
+  // eslint-disable-next-line
   const { restaurant } = useContext(RestaurantsContext);
   //  fetch data from api and retreave it on the field
   useEffect(() => {
@@ -20,21 +22,22 @@ const UpdateRestaurant = (props) => {
       SetPriceRange(response.data.data.restaurant.price_range);
     };
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // eslint-disable-next-line
     const updatedRestaurant = await RestaurantFinder.put(`/${id}`, {
       name,
       location,
       price_range: priceRange,
     });
     navigate("/");
-};
-    
+  };
+
   return (
     <div>
-
       <form action="">
         <div className="form-group">
           <label htmlFor="name">Name</label>
