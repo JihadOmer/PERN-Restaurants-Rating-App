@@ -1,5 +1,6 @@
-describe("input", () => {
-  it("Gets, types and asserts", () => {
+/* eslint-disable no-undef */
+describe("Add restaurant", () => {
+  it("Gets, Add new restaurant", () => {
     cy.visit("/");
     // name input
     cy.get(".form-control")
@@ -15,10 +16,6 @@ describe("input", () => {
     cy.get(".custom-select").eq(0).select("2").should("have.value", "2");
 
     // submit button
-    cy.get(".btn.btn-primary")
-      .type("submit")
-      .click()
-      .get(".btn.btn-primary")
-      .click();
+    cy.get(".btn.btn-primary").click();
   });
 });

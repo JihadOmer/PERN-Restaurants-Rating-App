@@ -60,15 +60,20 @@ const RestaurantList = (props) => {
           {restaurants &&
             restaurants.map((restaurant) => {
               return (
-                <tr key={restaurant.id}>
-                  <td>{restaurant.name}</td>
+                <tr className="restaurant-row" key={restaurant.id}>
+                  <td className="restaurant-name">{restaurant.name}</td>
                   <td>{restaurant.location}</td>
                   <td>
                     <span>{"$".repeat(restaurant.price_range)}</span>
                   </td>
                   <td>No Rating</td>
                   <td>
-                    <button onClick={() => handleUpdate(restaurant.id)} className="btn btn-warning">Update</button>
+                    <button
+                      onClick={() => handleUpdate(restaurant.id)}
+                      className="btn btn-warning"
+                    >
+                      Update
+                    </button>
                   </td>
                   <td>
                     <button
