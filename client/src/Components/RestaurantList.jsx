@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import RestaurantFinder from "../apis/RestaurantFinder";
 import { RestaurantsContext } from "../context/RestaurantsContext";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RestaurantList = (props) => {
   const { restaurants, setRestaurants } = useContext(RestaurantsContext);
-    let navigate = useNavigate(); // to navigate to another page
+  let navigate = useNavigate(); // to navigate to another page
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,10 +26,9 @@ const RestaurantList = (props) => {
       })
     );
 
-
     try {
-        await RestaurantFinder.delete(`/${id}`);
-    
+      await RestaurantFinder.delete(`/${id}`);
+
       setRestaurants(
         restaurants.filter((restaurant) => {
           return restaurant.id !== id;
@@ -38,10 +37,9 @@ const RestaurantList = (props) => {
     } catch (err) {}
   };
 
-    const handleUpdate = (id) => {
-     navigate(`/restaurants/${id}/update`);
-    };
-
+  const handleUpdate = (id) => {
+    navigate(`/restaurants/${id}/update`);
+  };
 
   return (
     <div className="group-list">
