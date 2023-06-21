@@ -14,6 +14,11 @@ describe("input", () => {
     // price range input
     cy.get(".custom-select").eq(0).select("2").should("have.value", "2");
 
-    
+    // submit button
+    cy.get(".btn.btn-primary")
+      .type("submit")
+      .click()
+      .get(".btn.btn-primary")
+      .click();
   });
 });
