@@ -4,7 +4,7 @@ import Home from "./routes/Home";
 import RestaurantDetailPage from "./routes/RestaurantDetailPage";
 import UpdatePage from "./routes/UpdatePage";
 import { RestaurantsContextProvider } from "./context/RestaurantsContext";
-
+import Footer from "./Components/Footer";
 
 const App = () => {
   return (
@@ -26,6 +26,7 @@ const App = () => {
           </Routes>
         </BrowserRouter>
       </div>
+        <Footer />
     </RestaurantsContextProvider>
   );
 };
