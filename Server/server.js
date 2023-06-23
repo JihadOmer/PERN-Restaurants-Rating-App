@@ -108,7 +108,7 @@ app.delete("/api/v1/restaurants/:id", async (req, res) => {
 });
 
 // ~~~ port setting ~~~~
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`server is up and listening on port ${port}`);
 });
