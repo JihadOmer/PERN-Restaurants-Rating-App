@@ -21,7 +21,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                LinkedIn
+                Linked In
               </a>
             </div>
           </div>
