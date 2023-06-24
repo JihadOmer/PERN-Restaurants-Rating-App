@@ -4,10 +4,10 @@ function Footer() {
   return (
     <div>
       <footer>
-        <div class="footer-container">
-          <div class="footer-content">
+        <div className="footer-container">
+          <div className="footer-content">
             <p>© 2023 Jihad Omer</p>
-            <div class="footer-links">
+            <div className="footer-links">
               <a
                 href="https://github.com/JihadOmer"
                 target="_blank"
@@ -15,7 +15,7 @@ function Footer() {
               >
                 GitHub
               </a>
-             <br/>
+              <br />
               <a
                 href="https://www.linkedin.com/in/jihad-omer-5a6290243/"
                 target="_blank"
