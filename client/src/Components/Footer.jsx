@@ -13,7 +13,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                GitHub
+                 my GitHub 
               </a>
               <br />
               <a
