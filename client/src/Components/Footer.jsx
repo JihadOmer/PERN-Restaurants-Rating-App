@@ -3,9 +3,9 @@ import React from "react";
 function Footer() {
   return (
     <div>
-      <footer>
-        <div className="footer-container">
-          <div className="footer-content">
+      <footer className="footer bg-dark text-light text-center fixed-bottom">
+        <div className="container d-flex justify-content-center align-items-center">
+          <div className="mb-2 mt-2">
             <p>© 2023 Jihad Omer</p>
             <div className="footer-links">
               <a
@@ -13,7 +13,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                 my GitHub 
+                CodeBase
               </a>
               <br />
               <a
@@ -21,7 +21,7 @@ function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Linked In
+                LinkedIn
               </a>
             </div>
           </div>
