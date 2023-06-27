@@ -1,13 +1,13 @@
-require("dotenv").config();
-const express = require("express");
-const db = require("./db");
-const cors = require("cors");
+require("dotenv").config(); // to use .env file
 
+const express = require("express");
+const db = require("./db/index.js"); // to use db connection
+const cors = require("cors");
 
 const app = express();
 
 // middlewares
-app.use(cors()) // to allow cross origin requests
+app.use(cors()); // to allow cross origin requests
 app.use(express.json()); // to send body with request
 
 // get all restaurants
