@@ -4,12 +4,8 @@ const { Pool } = require("pg");
 
 // module.exports = { query: (text, params) => pool.query(text, params) };
 
-
 const db = new Pool({
-  connectionString: process.env.DBConfigLink,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  connectionString: process.env.DBConnLink,
 });
 
 // const db = new Pool({
