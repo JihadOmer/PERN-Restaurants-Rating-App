@@ -1,5 +1,5 @@
 const { Pool } = require("pg");
-import dotenv from "dotenv";
+require("dotenv").config();
 
 // const pool = new Pool();
 
