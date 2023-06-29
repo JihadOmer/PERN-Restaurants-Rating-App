@@ -8,15 +8,19 @@ const { Pool } = require("pg");
 //   connectionString: process.env.DBConnLink,
 // });
 
+// const db = new Pool({
+//   user: "user1",
+//   host: "dpg-cideb6tph6eounfa10gg-a",
+//   database: "pricing_jz6y",
+//   password: "zi4yMt6QYfzbX4CZmjdrDsWXevNRo1p0",
+//   port: "5432",
+//   ssl: {
+//     rejectUnauthorized: false,
+//   },
+// });
+
 const db = new Pool({
-  user: "user1",
-  host: "dpg-cideb6tph6eounfa10gg-a",
-  database: "pricing_jz6y",
-  password: "zi4yMt6QYfzbX4CZmjdrDsWXevNRo1p0",
-  port: "5432",
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  connectionString: process.env.DATABASE_URL,
 });
 
 module.exports = db;
