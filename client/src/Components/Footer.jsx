@@ -17,7 +17,7 @@ function Footer() {
               </a>
               <br />
               <a
-                href="https://www.linkedin.com/in/jihad-omer-5a6290243/"
+                href="https://github.com/JihadOmer/PERN-Restaurants-Rating-App"
                 target="_blank"
                 rel="noopener noreferrer"
               >
