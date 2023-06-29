@@ -1,7 +1,7 @@
 require("dotenv").config(); // to use .env file
 
 const express = require("express");
-const db = require('./db'); // to use db connection
+const db = require("./db/index"); // to use db connection
 const cors = require("cors");
 
 const app = express();

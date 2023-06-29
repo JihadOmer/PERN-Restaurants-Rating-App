@@ -1,6 +1,15 @@
 const { Pool } = require("pg");
 require("dotenv").config();
 
+const db = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
+
+module.exports = db;
+
 // const pool = new Pool();
 
 // module.exports = { query: (text, params) => pool.query(text, params) };
@@ -20,16 +29,9 @@ require("dotenv").config();
 //   },
 // });
 
-const db = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-
-
 // const db = new Pool({
 //   connectionString: "your-database-url",
 //   ssl: {
 //     rejectUnauthorized: false,
 //   },
 // });
-
-module.exports = db;
