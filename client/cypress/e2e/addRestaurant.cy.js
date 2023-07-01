@@ -13,7 +13,10 @@ describe("Add restaurant", () => {
       .type("new Location")
       .should("have.value", "new Location");
     // price range input
-    cy.get(".custom-select").eq(0).select("2").should("have.value", "2");
+    cy.get(".custom-select")
+    .eq(0)
+    .select("2")
+    .should("have.value", "2");
 
     // submit button
     cy.get(".btn.btn-primary").click();
