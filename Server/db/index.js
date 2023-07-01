@@ -1,18 +1,34 @@
 const { Pool } = require("pg");
-require("dotenv").config();
 
-const db = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
+const pool = new Pool();
 
-module.exports = db;
+module.exports = { query: (text, params) => pool.query(text, params) };
 
-// const pool = new Pool();
+// import { Pool } from "pg";
 
-// module.exports = { query: (text, params) => pool.query(text, params) };
+// pools will use environment variables
+// for connection information
+// const db = new Pool();
+
+// you can also use async/await
+
+// await pool.end();
+
+// clients will also use environment variables
+// for connection information
+// const client = new Client();
+// await client.connect();
+
+// await client.end();
+
+// const db = new Pool({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false,
+//   },
+// });
+
+// module.exports = db;
 
 // const db = new Pool({
 //   connectionString: process.env.DBConnLink,
