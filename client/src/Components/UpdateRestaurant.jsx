@@ -16,7 +16,7 @@ const UpdateRestaurant = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await RestaurantFinder.get(`/${id}`);
-      console.log(response);
+
       SetName(response.data.data.restaurant.name);
       SetLocation(response.data.data.restaurant.location);
       SetPriceRange(response.data.data.restaurant.price_range);
