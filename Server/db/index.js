@@ -11,17 +11,18 @@ const pool = new Pool({
 module.exports = pool;
 
 
-
+//##########################
 // const pool = new Pool();
-
-// module.exports = { query: (text, params) => pool.query(text, params) };
 
 // const db = new Pool({
 //   connectionString: process.env.DBConnLink,
 // });
 
+// module.exports = { query: (text, params) => pool.query(text, params) };
 
 
+//##########################
+// remote db render.com (internal) 
 // const db = new Pool({
 //   user: "user1",
 //   host: "dpg-cideb6tph6eounfa10gg-a",
