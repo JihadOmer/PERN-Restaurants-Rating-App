@@ -1,15 +1,15 @@
 const { Pool } = require("pg");
 
-
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+});
+
+pool.connect((err) => {
+  if (err) throw err;
+  console.log("Connect to PostgreSQL successfully!");
 });
 
 module.exports = pool;
-
 
 //##########################
 // const pool = new Pool();
@@ -20,9 +20,8 @@ module.exports = pool;
 
 // module.exports = { query: (text, params) => pool.query(text, params) };
 
-
 //##########################
-// remote db render.com (internal) 
+// remote db render.com (internal)
 // const db = new Pool({
 //   user: "user1",
 //   host: "dpg-cideb6tph6eounfa10gg-a",
@@ -34,14 +33,9 @@ module.exports = pool;
 //   },
 // });
 
-
-
-
 // const db = new Pool({
 //   connectionString: "your-database-url",
 //   ssl: {
 //     rejectUnauthorized: false,
 //   },
 // });
-
-
