@@ -1,4 +1,4 @@
-// const { Pool } = require("pg");
+const { Pool } = require("pg");
 
 // const pool = new Pool({
 //   connectionString: process.env.POSTGRES_URL + "?sslmode=require",
@@ -40,7 +40,7 @@
 //   },
 // });
 
-const { Pool } = require("pg");
+// module.exports = { query: (text, params) => db.query(text, params) };
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL + "?sslmode=require",
@@ -51,4 +51,5 @@ pool.connect((err) => {
   console.log("Connect to PostgreSQL successfully!");
 });
 
-module.exports = pool;
+// module.exports = pool;
+module.exports = { query: (text, params) => db.query(text, params) };
