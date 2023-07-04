@@ -1,15 +1,15 @@
 const { Pool } = require("pg");
 
-const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
-});
+// const pool = new Pool({
+//   connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+// });
 
-pool.connect((err) => {
-  if (err) throw err;
-  console.log("Connect to PostgreSQL successfully!");
-});
+// pool.connect((err) => {
+//   if (err) throw err;
+//   console.log("Connect to PostgreSQL successfully!");
+// });
 
-module.exports = pool;
+// module.exports = pool;
 
 //##########################
 // const pool = new Pool();
@@ -39,3 +39,16 @@ module.exports = pool;
 //     rejectUnauthorized: false,
 //   },
 // });
+
+const { Pool } = require("pg");
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL + "?sslmode=require",
+});
+
+pool.connect((err) => {
+  if (err) throw err;
+  console.log("Connect to PostgreSQL successfully!");
+});
+
+module.exports = pool;
