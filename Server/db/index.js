@@ -1,5 +1,19 @@
 const { Pool } = require("pg");
 
+
+// external db render.com
+const db = new Pool({
+  connectionString: process.env.DATABASE_URL + "?sslmode=require",
+});
+
+db.connect((err) => {
+  if (err) throw err;
+  console.log("🎉 Database connected successfully 🎉");
+});
+
+// module.exports = pool;
+module.exports = { query: (text, params) => db.query(text, params) };
+
 // const pool = new Pool({
 //   connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 // });
@@ -42,14 +56,3 @@ const { Pool } = require("pg");
 
 // module.exports = { query: (text, params) => db.query(text, params) };
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL + "?sslmode=require",
-});
-
-pool.connect((err) => {
-  if (err) throw err;
-  console.log("Connect to PostgreSQL successfully!");
-});
-
-// module.exports = pool;
-module.exports = { query: (text, params) => db.query(text, params) };
