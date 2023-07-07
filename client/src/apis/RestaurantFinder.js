@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://server-test-ii4j.onrender.com";
+const baseURL = "/api/v1/restaurants"
   
 
 export default axios.create({
