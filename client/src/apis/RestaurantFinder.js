@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const baseURL = "api/v1/restaurants";
-// process.env.NODE_ENV === "production"
-// ? "api/v1/restaurants"
-// : "http://localhost:3001/api/v1/restaurants";
+const baseURL =
+  process.env.NODE_ENV === "production"
+    ? "api/v1/restaurants"
+    : "https://restaurants-rating-app.onrender.com/";
 
 export default axios.create({
   baseURL,
 });
+//
