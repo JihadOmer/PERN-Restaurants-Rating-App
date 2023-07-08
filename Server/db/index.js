@@ -9,4 +9,6 @@ db.connect((err) => {
   console.log("🎉 Database connected successfully 🎉");
 });
 
+
 module.exports = db;
+
