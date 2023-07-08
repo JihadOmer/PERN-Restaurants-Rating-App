@@ -1,7 +1,5 @@
 const { Pool } = require("pg");
 
-
-
 const db = new Pool({
   connectionString: process.env.DATABASE_URL + "?sslmode=require",
 });
@@ -11,7 +9,4 @@ db.connect((err) => {
   console.log("🎉 Database connected successfully 🎉");
 });
 
-// module.exports = pool;
-module.exports = { query: (text, params) => db.query(text, params) };
-
-
+module.exports = db;
