@@ -4,8 +4,8 @@ function Header() {
   return (
     <div>
       <h1 className="font-weight-light display-1 text-center">
-        {" "}
-        Restaurant Pricing App
+        
+        Restaurant Rating App
       </h1>
     </div>
   );

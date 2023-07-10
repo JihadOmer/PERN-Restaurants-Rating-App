@@ -4,6 +4,7 @@ import { RestaurantsContext } from "../context/RestaurantsContext";
 import { useNavigate } from "react-router-dom";
 
 const RestaurantList = (props) => {
+  // destucture the restaurants and setRestaurants obj we passed in context component
   const { restaurants, setRestaurants } = useContext(RestaurantsContext);
   let navigate = useNavigate(); // to navigate to another page
 
