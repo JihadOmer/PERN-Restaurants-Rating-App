@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import RestaurantFinder from "../apis/RestaurantFinder";
 import { useParams, useNavigate } from "react-router-dom";
-import { RestaurantsContext } from "../context/RestaurantsContext";
+
 
 const UpdateRestaurant = (props) => {
   const [name, SetName] = useState("");
@@ -11,8 +11,9 @@ const UpdateRestaurant = (props) => {
   // eslint-disable-next-line
   const { id } = useParams();
   // eslint-disable-next-line
-  const { restaurant } = useContext(RestaurantsContext);
-  //  fetch data from api and retreave it on the field
+  
+
+  //  to load fields when page is loaded
   useEffect(() => {
     const fetchData = async () => {
       const response = await RestaurantFinder.get(`/${id}`);
