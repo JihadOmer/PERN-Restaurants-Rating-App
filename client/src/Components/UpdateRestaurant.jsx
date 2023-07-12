@@ -2,16 +2,13 @@ import React, { useState, useEffect } from "react";
 import RestaurantFinder from "../apis/RestaurantFinder";
 import { useParams, useNavigate } from "react-router-dom";
 
-
 const UpdateRestaurant = (props) => {
   const [name, SetName] = useState("");
   const [location, SetLocation] = useState("");
   const [priceRange, SetPriceRange] = useState("");
-  let navigate = useNavigate();
-  // eslint-disable-next-line
+  const navigate = useNavigate();
+
   const { id } = useParams();
-  // eslint-disable-next-line
-  
 
   //  to load fields when page is loaded
   useEffect(() => {
@@ -28,11 +25,11 @@ const UpdateRestaurant = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // eslint-disable-next-line
-    const updatedRestaurant = await RestaurantFinder.put(`/${id}`, {
+   
+    await RestaurantFinder.put(`/${id}`, {
       name,
       location,
-      price_range: priceRange,  
+      price_range: priceRange,
     });
     navigate("/");
   };
