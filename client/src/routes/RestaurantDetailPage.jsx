@@ -21,7 +21,7 @@ function RestaurantDetailPage() {
       }
           fetchData();
 
-
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
 
@@ -31,3 +31,5 @@ function RestaurantDetailPage() {
 
 
 export default RestaurantDetailPage
+
+
