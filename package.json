@@ -882,10 +882,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd server && npm install && cd ../client && npm install && npm run build",
-    "start": "cd server && npm start"
+    "start": "node server/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC"
-  
 }
