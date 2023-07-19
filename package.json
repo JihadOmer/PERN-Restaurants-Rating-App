@@ -2,7 +2,7 @@
   "name": "pern-restaurants-rating-app",
   "version": "1.0.0",
   "description": "In this project I am building a Website to rate my favorite restaurants.",
-  "main": "index.js",
+  "main": "./server/server.js",
   "dependencies": {
     "abab": "^2.0.6",
     "accepts": "^1.3.8",
@@ -881,8 +881,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd client && npm ci && npm run build && cd .. && npm ci && npm run start",
-    "start": "node server.js"
+    "build": "npm i && cd ../client && npm i && npm run build",
+    "start": "cd ./server && node server.js"
   },
   "keywords": [],
   "author": "",
