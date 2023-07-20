@@ -7,9 +7,9 @@ const db = new Pool({
   connectionString,
 });
 
-db.connect((err) => {
-  if (err) throw err;
-  console.log("🎉 Database connected successfully 🎉");
-});
+// db.connect((err) => {
+//   if (err) throw err;
+//   console.log("🎉 Database connected successfully 🎉");
+// });
 
 module.exports = db;
