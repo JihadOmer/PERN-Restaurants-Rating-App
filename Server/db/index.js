@@ -2,6 +2,7 @@ const { Pool } = require("pg");
 require("dotenv").config();
 
 const connectionString = process.env.DATABASE_URL + "?sslmode=require";
+
 const db = new Pool({
   connectionString,
 });
