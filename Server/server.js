@@ -24,7 +24,11 @@ app.get("/api/v1/restaurants", async (req, res) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    res.status(500).json({
+      status: "error",
+      message: "An error occurred while fetching restaurants.",
+    });
   }
 });
 
@@ -84,7 +88,7 @@ app.put("/api/v1/restaurants/:id", async (req, res) => {
     res.status(201).json({
       status: "success",
       data: {
-        resturant: results.rows[0],
+        restaurant: results.rows[0],
       },
     });
   } catch (err) {
@@ -99,11 +103,16 @@ app.delete("/api/v1/restaurants/:id", async (req, res) => {
   ]);
 
   try {
-    res.status(204).json({
+    res.status(200).json({
       status: "success",
+      message: "Restaurant deleted successfully.",
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    res.status(500).json({
+      status: "error",
+      message: "An error occurred while deleting the restaurant.",
+    });
   }
 });
 

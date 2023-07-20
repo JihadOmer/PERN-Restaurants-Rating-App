@@ -1,9 +1,10 @@
 const { Pool } = require("pg");
 require("dotenv").config();
 
-const { DATABASE_URL } = process.env;
+const connectionString =
+  "postgres://user1:zi4yMt6QYfzbX4CZmjdrDsWXevNRo1p0@dpg-cideb6tph6eounfa10gg-a.frankfurt-postgres.render.com/pricing_jz6y";
 const db = new Pool({
-  connectionString: DATABASE_URL + "?sslmode=require",
+  connectionString,
 });
 
 // db.connect((err) => {
