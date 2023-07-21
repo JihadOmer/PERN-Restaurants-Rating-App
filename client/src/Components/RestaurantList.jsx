@@ -11,7 +11,9 @@ const RestaurantList = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await RestaurantFinder.get("/");
+        const response = await RestaurantFinder.get(
+          "https://test-restaurant-rating-app.onrender.com"
+        );
 
         setRestaurants(response.data.data.restaurant);
       } catch (err) {}
@@ -30,7 +32,7 @@ const RestaurantList = (props) => {
 
     try {
       await RestaurantFinder.delete(`/${id}`);
- 
+
       setRestaurants(
         restaurants.filter((restaurant) => {
           return restaurant.id !== id;
