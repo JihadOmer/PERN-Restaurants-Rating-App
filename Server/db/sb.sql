@@ -1,5 +1,5 @@
 CREATE TABLE reviews (
-    id BIGSERIAL NOT NULL PRIMARY KEY,
+    id BIGINT NOT NULL PRIMARY KEY,
     restaurant_id BIGINT NOT NULL REFERENCES restaurant(id),
     name VARCHAR(50) NOT NULL,
     review TEXT NOT NULL,
