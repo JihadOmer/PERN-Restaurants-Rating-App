@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 import RestaurantFinder from "../apis/RestaurantFinder";
-import StarRating from "../Components/StarRating";
+import Reviews from "../Components/Reviews";
 
 function RestaurantDetailPage() {
   const { id } = useParams();
@@ -25,7 +25,17 @@ function RestaurantDetailPage() {
   }, []);
 
   // onlyl render the selected restaurant after the data is fetched (selectedRestaurant)
-  return <div>{selectedRestaurant && <StarRating rating={3.2} />} </div>;
+  return (
+    <div>
+      {selectedRestaurant && (
+        <>
+          <div className="mt-3">
+            <Reviews />
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
 
 export default RestaurantDetailPage;
