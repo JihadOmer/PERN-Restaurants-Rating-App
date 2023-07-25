@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import RestaurantFinder from "../apis/RestaurantFinder";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 import { useNavigate } from "react-router-dom";
+import StarRating from "./StarRating";
 
 const RestaurantList = (props) => {
   // destucture the restaurants and setRestaurants obj we passed in context component
@@ -30,7 +31,7 @@ const RestaurantList = (props) => {
 
     try {
       await RestaurantFinder.delete(`/${id}`);
- 
+
       setRestaurants(
         restaurants.filter((restaurant) => {
           return restaurant.id !== id;
@@ -48,6 +49,17 @@ const RestaurantList = (props) => {
     navigate(`/restaurants/${id}`);
   };
 
+  const RenderRating = (restaurant) => {
+    if (!restaurant.count) {
+      return <span className="text-warning">0 reviews</span>;
+    }
+    return (
+      <>
+        <StarRating rating={restaurant.id} />
+        <span className="text-warning ml-1">({restaurant.count})</span>
+      </>
+    );
+  };
   return (
     <div className="group-list">
       <table className="table table-hover table-dark">
@@ -75,7 +87,7 @@ const RestaurantList = (props) => {
                   <td>
                     <span>{"$".repeat(restaurant.price_range)}</span>
                   </td>
-                  <td>No Rating</td>
+                  <td>{RenderRating(restaurant)}</td>
                   <td>
                     <button
                       onClick={(e) => handleUpdate(e, restaurant.id)}

@@ -13,18 +13,24 @@ app.use(express.json()); // to send body with request
 // get all restaurants
 app.get("/api/v1/restaurants", async (req, res) => {
   try {
-    const results = await db.query("select * from restaurant");
+    const RestaurantRatingData = await db.query(
+      "select * from restaurant left join (select restaurant_id, COUNT(*), TRUNC(AVG(rating),1) as average_rating from reviews group by restaurant_id) reviews on restaurant.id = reviews.restaurant_id"
+    );
 
     res.status(200).json({
       // best practice =>  add number of rows in the response to keep track of the number of responses.
-      results: results.rows.length,
+      results: RestaurantRatingData.rows.length,
       status: "success",
       data: {
-        restaurant: results.rows,
+        restaurant: RestaurantRatingData.rows,
       },
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    res.status(500).json({
+      status: "error",
+      message: "An error occurred while fetching restaurants.",
+    });
   }
 });
 
@@ -33,20 +39,23 @@ app.get("/api/v1/restaurants", async (req, res) => {
 app.get("/api/v1/restaurants/:id", async (req, res) => {
   try {
     const restaurantId = parseInt(req.params.id); // Convert to integer
-    // Check if the ID is an integer
-    // if (isNaN(restaurantId)) {
-    //     throw new Error("Invalid restaurant ID"); // Throw an error for non-integer input
-    //   }
-    // use this format to avoid sql injection attacks => read more
-    const results = await db.query("select * from restaurant where id = $1", [
-      restaurantId,
-    ]);
+
+    const restaurant = await db.query(
+      "select * from restaurant left join (select restaurant_id, COUNT(*), TRUNC(AVG(rating),1) as average_rating from reviews group by restaurant_id) reviews on restaurant.id = reviews.restaurant_id where id = $1",
+      [restaurantId]
+    );
+
+    const review = await db.query(
+      "select * from reviews where restaurant_id = $1",
+      [restaurantId]
+    );
 
     res.status(200).json({
       status: "success",
 
       data: {
-        restaurant: results.rows[0], // since we are returning only one restaurant
+        restaurant: restaurant.rows[0], // since we are returning only first restaurant on the array
+        reviews: review.rows,
       },
     });
   } catch (err) {
@@ -84,7 +93,7 @@ app.put("/api/v1/restaurants/:id", async (req, res) => {
     res.status(201).json({
       status: "success",
       data: {
-        resturant: results.rows[0],
+        restaurant: results.rows[0],
       },
     });
   } catch (err) {
@@ -99,8 +108,32 @@ app.delete("/api/v1/restaurants/:id", async (req, res) => {
   ]);
 
   try {
-    res.status(204).json({
+    res.status(200).json({
       status: "success",
+      message: "Restaurant deleted successfully.",
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      status: "error",
+      message: "An error occurred while deleting the restaurant.",
+    });
+  }
+});
+
+// add review
+app.post("/api/v1/restaurants/:id/addReview", async (req, res) => {
+  try {
+    const newReview = await db.query(
+      "INSERT INTO reviews (restaurant_id, name, review, rating) VALUES ($1, $2, $3,$4) returning *",
+      [req.params.id, req.body.name, req.body.review, req.body.rating]
+    );
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        review: newReview.rows[0],
+      },
     });
   } catch (err) {
     console.log(err);
@@ -108,7 +141,7 @@ app.delete("/api/v1/restaurants/:id", async (req, res) => {
 });
 
 // ~~~ port setting ~~~~
-const port = process.env.PORT || 3001;
-app.listen(port, () => {
-  console.log(`server is up and listening on port ${port}`);
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`server is up and listening on port ${PORT}`);
 });
