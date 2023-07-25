@@ -13,8 +13,6 @@ app.use(express.json()); // to send body with request
 // get all restaurants
 app.get("/api/v1/restaurants", async (req, res) => {
   try {
-    // const results = await db.query("select * from restaurant");
-
     const RestaurantRatingData = await db.query(
       "select * from restaurant left join (select restaurant_id, COUNT(*), TRUNC(AVG(rating),1) as average_rating from reviews group by restaurant_id) reviews on restaurant.id = reviews.restaurant_id"
     );
@@ -43,7 +41,7 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
     const restaurantId = parseInt(req.params.id); // Convert to integer
 
     const restaurant = await db.query(
-      "select * from restaurant where id = $1",
+      "select * from restaurant left join (select restaurant_id, COUNT(*), TRUNC(AVG(rating),1) as average_rating from reviews group by restaurant_id) reviews on restaurant.id = reviews.restaurant_id where id = $1",
       [restaurantId]
     );
 

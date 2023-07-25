@@ -4,7 +4,7 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 function AddReview() {
   const [name, setName] = useState("");
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(1);
   const [reviewText, setReviewText] = useState("");
 
   const { id } = useParams();
@@ -51,7 +51,6 @@ function AddReview() {
               value={{ rating }}
               onChange={(e) => setRating(e.target.value)}
             >
-              
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
