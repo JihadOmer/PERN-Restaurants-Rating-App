@@ -13,14 +13,18 @@ app.use(express.json()); // to send body with request
 // get all restaurants
 app.get("/api/v1/restaurants", async (req, res) => {
   try {
-    const results = await db.query("select * from restaurant");
+    // const results = await db.query("select * from restaurant");
+
+    const RestaurantRatingData = await db.query(
+      "select * from restaurant left join (select restaurant_id, COUNT(*), TRUNC(AVG(rating),1) as average_rating from reviews group by restaurant_id) reviews on restaurant.id = reviews.restaurant_id"
+    );
 
     res.status(200).json({
       // best practice =>  add number of rows in the response to keep track of the number of responses.
-      results: results.rows.length,
+      results: RestaurantRatingData.rows.length,
       status: "success",
       data: {
-        restaurant: results.rows,
+        restaurant: RestaurantRatingData.rows,
       },
     });
   } catch (err) {
