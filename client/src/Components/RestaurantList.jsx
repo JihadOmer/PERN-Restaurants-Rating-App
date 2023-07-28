@@ -3,7 +3,7 @@ import RestaurantFinder from "../apis/RestaurantFinder";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 import { useNavigate } from "react-router-dom";
 import StarRating from "./StarRating";
-
+import "../styles/RestaurantList.css";
 const RestaurantList = (props) => {
   // destucture the restaurants and setRestaurants obj we passed in context component
   const { restaurants, setRestaurants } = useContext(RestaurantsContext);
@@ -62,7 +62,7 @@ const RestaurantList = (props) => {
   };
   return (
     <div className="group-list">
-      <table className="table table-hover table-dark">
+      <table className="table table-hover">
         <thead>
           <tr bg-primery="true">
             <th scope="col">Restaurant</th>
