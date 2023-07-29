@@ -17,6 +17,6 @@ https://restaurants-rating-app.netlify.app/
 
 ## How to run locally
 
-from the root directory run 'npm run dev' @ port 3000
+from the root directory run 'npm run dev' @ port 3000(Concurrently)
 
 Feel free to contact me for contribution @ jihadomer940@gmail.com
