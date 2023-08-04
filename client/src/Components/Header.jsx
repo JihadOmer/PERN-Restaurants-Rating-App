@@ -4,9 +4,11 @@ function Header() {
   return (
     <div>
       <h1 className="font-weight-light display-1 text-center">
-        
-        Restaurant Rating App
+         🍕MunchyMaster 🍟
       </h1>
+      <p className="text-center ">
+        Findding your next meal never been easier !!
+      </p>
     </div>
   );
 }
