@@ -13,7 +13,7 @@ by adding reviews and notes on each restaurant.
 
 ## Ready to go 😋 !!
 
-https://restaurants-rating-app.netlify.app/
+https://munchymaster.netlify.app/
 
 ## How to run locally
 
